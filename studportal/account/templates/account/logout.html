@@ -1,0 +1,9 @@
+{% extends 'account/base.html' %}
+
+{% block title %}Покинуто{% endblock %}
+
+{% block content %}
+<h1 class="msg-simple">
+    Вы покинули аккаунт, грустно, но вы всегда можете <a href="{% url 'login' %}">вернуться</a>!
+</h1>
+{% endblock %}

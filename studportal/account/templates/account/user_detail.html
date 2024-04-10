@@ -1,0 +1,35 @@
+{% extends 'account/base.html' %}
+{% load thumbnail %}
+
+
+{% block title %} {{ select_user.first_name }} {% endblock %}
+
+{% block content %}
+
+    <h1 class="msg-simple">{{ select_user.get_full_name }}</h1>
+    
+    <img src="{% thumbnail select_user.profile.photo 180x180 %}">
+   
+    {% with total_followers=select_user.followers.count %}
+   
+        <span class="msg-simple">{{ total_followers }} follower{{ total_followers|pluralize }}</span>
+       
+        {% if request.user not in select_user.followers.all %}
+            <form action="{% url 'subscribe' select_user.id 'follow' %}" method="post" >
+                {% csrf_token %}
+                <input type="submit" value="Follow" >
+            </form>
+        {% else %}
+            <form action="{% url 'subscribe' select_user.id 'unfollow' %}" method="post" >
+                {% csrf_token %}
+                <input type="submit" value="Unfollow" >
+            </form>
+        {% endif %}
+
+    
+
+
+
+    {% endwith %}
+
+{% endblock %}

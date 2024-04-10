@@ -1,0 +1,19 @@
+{% extends 'account/base.html' %}
+
+{% block title %}Вход на сайт{% endblock %}
+
+{% block content %}
+{% if form.errors %}
+    <h1 class="msg-error">Что-то не так, попробуйте ввести корректные данные</h1>
+{% else %}
+    <h1 class="msg-simple">Введите данные ниже</h1>
+{% endif %}
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="hstext" value="{{ next }}">
+    <input type="submit" value="Войти">
+</form>
+<a href="{% url 'pass-reset' %}">Забыли пароль?</a>
+Еще нет акка? <a href="{% url 'registration' %}">Зарегистрируйся!</a>
+{% endblock %}

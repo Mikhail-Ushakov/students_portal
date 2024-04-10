@@ -1,0 +1,18 @@
+{% extends 'account/base.html' %}
+
+{% block title %}Смена пароля{% endblock %}
+
+{% block content %}
+{% if form.errors %}
+    <h1 class="msg-error">Введите корректны пароль</h1>
+{% else %}
+<h1 class="msg-simple">
+    Введите новые данные следуя форме
+</h1>
+{% endif %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Изменить">
+</form>
+{% endblock %}

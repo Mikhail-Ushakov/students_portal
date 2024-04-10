@@ -1,0 +1,18 @@
+{% extends 'account/base.html' %}
+
+{% block title %}Смена пароля{% endblock %}
+
+{% block content %}
+{% if validlink %}
+<h1 class="msg-simple">
+    Введите новые данные следуя форме
+</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Изменить">
+</form>
+{% else %}
+    <h1 class="msg-error">Ссылка недействительна</h1>
+{% endif %}
+{% endblock %}

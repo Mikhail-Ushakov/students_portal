@@ -1,0 +1,16 @@
+{% extends 'account/base.html' %}
+
+{% block title %}Редактирование профиля{% endblock %}
+
+{% block content %}
+<h1 class="msg-simple">Заполните поля ниже:</h1>
+{% if user_form.errors or profile_form.errors %}
+    <h1 class="msg-error">Что-то не так, трай агейн</h1>
+{% endif %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <input type="submit" value="Сохранить">
+</form>
+{% endblock %}
